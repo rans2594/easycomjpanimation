@@ -1,0 +1,50 @@
+[
+	{
+		"id": "0000",
+		"ip_address": "0.0.0.0",
+		"company_name": "提携企業", 
+		"redirect_url": "",
+		"discout_rate": "",
+		"imagename_of_flowchart": "defaultflow.png"
+	},
+	{
+		"id": "0001",
+		"ip_address": "",
+		"company_name": "東京医師歯科医師", 
+		"redirect_url": "http://www.proud-web.jp/teikei/ishikyo/",
+		"discout_rate": "",
+		"imagename_of_flowchart": ""
+	},
+	{
+		"id": "0002",
+		"ip_address": "",
+		"company_name": "SONY", 
+		"redirect_url": "http://www.proud-web.jp/teikei/sony/",
+		"discout_rate": "",
+		"imagename_of_flowchart": ""
+	},
+	{
+		"id": "0003",
+		"ip_address": "221.242.63.90",
+		"company_name": "株式会社野村不動産", 
+		"redirect_url": "",
+		"discout_rate": "5.5",
+		"imagename_of_flowchart": "flow_0003_nomura.png"
+	},
+	{
+		"id": "0004",
+		"ip_address": "221.242.63.93",
+		"company_name": "株式会社野村不動産", 
+		"redirect_url": "",
+		"discout_rate": "5.5",
+		"imagename_of_flowchart": "flow_0003_nomura.png"
+	},
+	{
+		"id": "0005",
+		"ip_address": "221.112.142.226",
+		"company_name": "株式会社フォーデジット", 
+		"redirect_url": "",
+		"discout_rate": "10.5",
+		"imagename_of_flowchart": "flow_0005_4d.png"
+	}
+]

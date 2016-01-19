@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>PROUD - 野村不動産　提携特典制度</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<meta property="og:title" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="" />
+<meta property="og:image" content="" />
+
+<meta name="robots" content="all">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/contents.css">
+<link rel="stylesheet" href="./css/test.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+<script src="./js/common.js"></script>
+<script type="text/javascript">
+	
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1);
+		if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+	}
+	return "";
+}
+id = getCookie('id');
+
+
+function userDetails(){ 
+	$.getJSON('json_files_details.json', function(data) {
+		for (var i in data) { 
+			if(id == data[i].id){
+				$("#id").append(data[i].id);
+				$("#ip_address").append(userip);
+				if(data[i].company_name != ""){
+					$(".com_name").append(data[i].company_name + "様ようこそ" );
+					$(".com_name2").append(data[i].company_name);					
+				} else{
+					$(".com_name").append("提携企業様ようこそ");
+					$(".com_name2").append("提携企業様");
+				} 
+				if(data[i].discout_rate != ""){ 
+					$("#dis_rate").append("提携割引" + data[i].discout_rate + "%適用");					
+					$("#discountDesc").append("弊社分譲物件をご購入の際、販売価格（税抜）の" + data[i].discout_rate + "%%割引が適用されます。<br>ご利用には「紹介状」のご提出が必要です。");
+				} else {
+					$("#dis_rate").append("提携割引が適用されます");
+					$("#discountDesc").append("弊社分譲物件をご購入の際、提携割引が適用されます。<br>ご利用には「紹介状」のご提出が必要です。");
+				}
+				if(data[i].imagename_of_flowchart != ""){
+					var imageFlowchart = data[i].imagename_of_flowchart.substr(0, data[i].imagename_of_flowchart.length - 4);
+					// console.log("image" + imageFlowchart);
+					var imageFlowchartMobile = "img/" + imageFlowchart + "_s.png";
+					console.log("image" + imageFlowchartMobile);
+					// $("#image_file").append(data[i].imagename_of_flowchart);									
+					$(".cont04 ul").css("background-image", 'url("img/' + data[i].imagename_of_flowchart + '")');
+					$("#mobileFLowchart").attr("src", imageFlowchartMobile);	
+				} else {
+					var imageFlowchart = data[i].imagename_of_flowchart.substr(0, data[i].imagename_of_flowchart.length - 4);
+					console.log("image2" + imageFlowchart);
+					var imageFlowchartMobile = "img/defaultflow_s.png";
+					// $("#image_file").append("defaultflow.png");
+					$(".cont04 ul").css("background-image", 'url("img/defaultflow.png")');					
+					$("#mobileFLowchart").attr("src", imageFlowchartMobile);
+				}
+			}
+		}
+	});
+}
+
+userDetails();
+
+</script>
+<!-- <script type="text/javascript" src="js/jquery.bxslider.js"></script> -->
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    
+// $('.topSlider').bxSlider({
+//   mode: 'fade',
+//   auto: true,
+//   pager: false
+// });
+  });
+</script> -->
+
+<style type="text/css">
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999999; /* Sit on top */
+    padding-top: 0; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#modalSP > header > .wrapper > h1 {
+	padding-top: 13px;
+	margin: 0px auto 19px;
+}
+
+.hiddenContents {
+	display: none;
+}
+
+.dropdown dd { position:relative; z-index: 9999}
+.dropdown a, .dropdown a:visited { text-decoration:none; outline:none;}
+
+.dropdown dt a { display:block;}
+.dropdown dt a span {cursor:pointer; display:block;}
+.dropdown dd ul { display:none;
+                 position:absolute; width:auto; min-width:170px; list-style:none;}
+.dropdown span.value { display:none;}
+.dropdown dd ul li a { display:block;}
+
+.dropdown img.flag { border:none; vertical-align:middle; margin-left:10px; }
+
+#arealistpc, #routelistpc > li {
+	cursor: pointer;
+}
+</style>
+
+</head>
+
+<body class="top">
+
+<!-- Mobile Modal -->
+<div id="modalSP" class="modal">
+	<header>
+		<div class="wrapper">
+			<h1 id="logo"><a href="./"><img src="img/logo.png" alt="PROUD"></a></h1>
+			<h2 class="com_name"><br class="br_sp">企業様ようこそ</h2>
+			<p class="hidden_p"><a id="btnRouteSP"><img src="img/sp/btn_s02.png" alt="閉じる"></a></p>
+			<nav id="gnav" class="hidden_sp">
+				<ul class="clearfix">
+					<li><a href="/">TOP</a></li>
+					<li><a href="">物件を探す</a></li>
+					<li><a href="">提携企業制度とは</a></li>
+					<li><a href="">お問い合わせ</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header><!-- /header -->
+
+	<section class="areaSearch hidden_sp">
+		<div class="wrapper" style="margin-top: 60px;">
+			<h3><img src="img/txt_a01.png" alt="路線から探す"></h3>
+			<ul id="arealistpc" class="list01 clearfix">
+				<li class="a01"><img data-src="img/btn_a01.png" src="img/swap/btn_01.png" alt="埼玉"></li>
+				<li class="a02"><img data-src="img/btn_a02.png" src="img/swap/btn_02.png" alt="城西・城北"></li>
+				<li class="a03"><img data-src="img/btn_a03.png" src="img/swap/btn_03.png" alt="東京市部"></li>
+				<li class="a04"><img data-src="img/btn_a04.png" src="img/swap/btn_04.png" alt="都心6区"></li>
+				<li class="a05"><img data-src="img/btn_a05.png" src="img/swap/btn_05.png" alt="城東"></li>
+				<li class="a06"><img data-src="img/btn_a06.png" src="img/swap/btn_06.png" alt="千葉"></li>
+				<li class="a07"><img data-src="img/btn_a07.png" src="img/swap/btn_07.png" alt="城南"></li>
+				<li class="a08"><img data-src="img/btn_a08.png" src="img/swap/btn_08.png" alt="神奈川"></li>
+			</ul>
+			<p class="map"><img src="img/area_map.png" alt="エリアマップ"></p>
+			<p class="btnSearch"><a id="btn-areapc-search" href="#"><img src="img/btn_r10.png" alt="SEARCH"></a></p>
+		</div>
+	</section>
+	<section class="areaSearch hidden_p">
+		<nav id="search">
+			<ul class="clearfix">
+				<li class="current">
+					<a id="btnAreaMobileModal" href="#"><img src="img/sp/btn_s03_on.png" alt="エリアから探す"></a>
+				</li>
+				<li class="other">
+					<a id="btnRouteMobileModal" href="#"><img src="img/sp/btn_s04.png" alt="路線から探す"></a>
+				</li>
+			</ul>
+		</nav>
+
+		<div id="area-search" class="searchAreaS area">
+				<p class="arrow"><img src="img/sp/arrow_s_bottom.png"></p>
+				<ul id="arealistmobile" class="list01 clearfix">
+					<li><input type="checkbox" class="areaID" value="4">東京（都心6区）</li>
+					<li><input type="checkbox" class="areaID" value="2">東京（城西・城北）</li>
+					<li><input type="checkbox" class="areaID" value="5">東京（城東）</li>
+					<li><input type="checkbox" class="areaID" value="7">東京（城南）</li>
+					<li><input type="checkbox" class="areaID" value="3">東京（東京市部）</li>
+					<li><input type="checkbox" class="areaID" value="8">神奈川</li>
+					<li><input type="checkbox" class="areaID" value="1">埼玉</li>
+					<li><input type="checkbox" class="areaID" value="6">千葉</li>
+				</ul>
+				<h4>物件種別</h4>
+				<p id="areatypemobile" class="list02">
+					<input class="kind all" type="radio" value="all" name="kind">ALL
+					<input class="kind two" type="radio" value="2" name="kind">マンション
+					<input class="kind one" type="radio" value="1" name="kind">戸建
+				</p>
+				<h4>並び替え</h4>
+				<p id="areasortmobile" class="list02">
+					<label><input type="radio" name="sort" value="published_at">新着順</label>
+					<label><input type="radio" name="sort" value="published_at">駅から近い順</label>
+					<label><input type="radio" name="sort" value="published_at">専有面積が広い順</label>
+					<label><input type="radio" name="sort" value="published_at">総戸数が多い順</label>
+				</p>
+				<p class="btnSearch">
+					<a id="areasearchBtnClose">
+						<img src="img/sp/btn_s05.png" alt="SEARCH">
+					</a>
+				</p>
+			</div>
+
+			<div id="route-search" class="searchAreaS route" style="display: none;">
+				<p class="arrow"><img src="img/sp/arrow_s_bottom.png"></p>
+				<ul id="routelistmobile" class="list01 clearfix">
+					<li><input type="checkbox" name="area" value="2172">JR山手線</li>
+					<li><input type="checkbox" name="area" value="2184">JR中央線</li>
+					<li><input type="checkbox" name="area" value="2199">JR総武線</li>
+					<li><input type="checkbox" name="area" value="2301">京王線</li>
+					<li><input type="checkbox" name="area" value="2198">JR埼京線</li>
+					<li><input type="checkbox" name="area" value="2196">JR京浜東北線</li>
+					<li><input type="checkbox" name="area" value="2324">東急東横線</li>
+					<li><input type="checkbox" name="area" value="2321">東急田園都市線</li>
+					<li><input type="checkbox" name="area" value="">その他の路線</li>
+				</ul>
+				<h4>物件種別</h4>
+				<p id="routetypemobile" class="list02">
+					<input type="radio" value="all" name="kind">ALL
+					<input type="radio" value="mansion" name="kind">マンション
+					<input type="radio" value="house" name="kind">戸建
+				</p>
+				<h4>並び替え</h4>
+				<p class="list02"><label><input type="radio" name="sort" value="sort01">新着順</label>
+				<label><input type="radio" name="sort" value="sort01">駅から近い順</label>
+				<label><input type="radio" name="sort" value="sort01">専有面積が広い順</label>
+				<label><input type="radio" name="sort" value="sort01">総戸数が多い順</label></p>
+				<p class="btnSearch"><a id="routeSearchBtnClose"><img src="img/sp/btn_s05.png" alt="SEARCH"></a></p>
+			</div>
+		</section>
+	
+</div>
+
+<!-- MODAL AREA PC -->
+<!-- <div id="modalSP" class="modal">
+	<section class="areaSearch hidden_p">
+		<nav id="search">
+			<ul class="clearfix">
+				<li class="current">
+					<a id="btnAreaSP"><img src="img/sp/btn_s03_on.png" alt="エリアから探す"></a>
+				</li>
+				<li class="other"><a id="btnRouteSP"><img src="img/sp/btn_s04.png" alt="路線から探す"></a></li>
+			</ul>
+		</nav>
+		<div class="searchAreaS area">
+			<p class="arrow"><img src="img/sp/arrow_s_bottom.png"></p>
+			<ul class="list01 clearfix">
+				<li><label><input type="checkbox" class="areaID" value="area01">東京（都心6区）</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area02">東京（城西・城北）</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area03">東京（城東）</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area04">東京（城南）</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area05">東京（東京市部）</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area06">神奈川</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area07">埼玉</label></li>
+				<li><label><input type="checkbox" class="areaID" value="area08">千葉</label></li>
+			</ul>
+			<h4>物件種別</h4>
+			<p class="list02"><label><input class="kind" type="radio" value="all" name="kind">ALL</label>
+			<label><input class="kind" type="radio" value="2" name="kind">マンション</label>
+			<label><input class="kind" type="radio" value="1" name="kind">戸建</label></p>
+			<h4>並び替え</h4>
+			<p class="list02"><label><input type="radio" name="sort" value="sort01">新着順</label>
+			<label><input type="radio" name="sort" value="sort01">駅から近い順</label>
+			<label><input type="radio" name="sort" value="sort01">専有面積が広い順</label>
+			<label><input type="radio" name="sort" value="sort01">総戸数が多い順</label></p>
+			<p class="btnSearch"><a id="areasearchBtnClose"><img src="img/sp/btn_s05.png" alt="SEARCH"></a></p>
+		</div>
+
+		<div class="searchAreaS route">
+			<p class="arrow"><img src="img/sp/arrow_s_bottom.png"></p>
+			<ul class="list01 clearfix">
+				<li><label><input type="checkbox" name="area" value="area01">JR山手線</label></li>
+				<li><label><input type="checkbox" name="area" value="area02">JR中央線</label></li>
+				<li><label><input type="checkbox" name="area" value="area03">JR総武線</label></li>
+				<li><label><input type="checkbox" name="area" value="area04">京王線</label></li>
+				<li><label><input type="checkbox" name="area" value="area05">JR埼京線</label></li>
+				<li><label><input type="checkbox" name="area" value="area06">JR京浜東北線</label></li>
+				<li><label><input type="checkbox" name="area" value="area07">東急東横線</label></li>
+				<li><label><input type="checkbox" name="area" value="area08">東急田園都市線</label></li>
+				<li><label><input type="checkbox" name="area" value="area08">その他の路線</label></li>
+			</ul>
+			<h4>物件種別</h4>
+			<p class="list02"><label><input type="radio" value="all" name="kind">ALL</label>
+			<label><input type="radio" value="2" name="kind">マンション</label>
+			<label><input type="radio" value="1" name="kind">戸建</label></p>
+			<h4>並び替え</h4>
+			<p class="list02"><label><input type="radio" name="sort" value="sort01">新着順</label>
+			<label><input type="radio" name="sort" value="sort01">駅から近い順</label>
+			<label><input type="radio" name="sort" value="sort01">専有面積が広い順</label>
+			<label><input type="radio" name="sort" value="sort01">総戸数が多い順</label></p>
+			<p class="btnSearch"><a id="routesearchBtnClose"><img src="img/sp/btn_s05.png" alt="SEARCH"></a></p>
+		</div>
+	</section>
+</div> -->
+
+<!-- Route Modal PC -->
+<div id="routePC" class="modal">
+	<section class="routeSearch hidden_sp">
+		<div class="wrapper">
+			<h3><img src="img/txt_r01.png" alt="路線から探す"></h3>
+			<ul id="routelistpc" class="list01 clearfix">
+				<li data-line="2184"><img data-src="img/btn_r02.png" src="img/swap/btn_r02n.png" alt="JR中央線"></li>
+				<li data-line="2172"><img data-src="img/btn_r01.png" src="img/swap/btn_r01n.png" alt="JR山手線"></li>
+				<li data-line="2199"><img data-src="img/btn_r03.png" src="img/swap/btn_r03n.png" alt="JR総武線"></li>
+				<li data-line="2301"><img data-src="img/btn_r04.png" src="img/swap/btn_r04n.png" alt="京王線"></li>
+				<li data-line="2198"><img data-src="img/btn_r05.png" src="img/swap/btn_r05n.png" alt="JR埼京線"></li>
+				<li data-line="2196"><img data-src="img/btn_r06.png" src="img/swap/btn_r06n.png" alt="JR京浜東北線"></li>
+				<li data-line="2324"><img data-src="img/btn_r07.png" src="img/swap/btn_r07n.png" alt="東急東横線"></li>
+				<li data-line="2321"><img data-src="img/btn_r08.png" src="img/swap/btn_r08n.png" alt="東急田園都市線"></li>
+				<li><img src="img/btn_r09.png" alt="その他の路線"></li>
+			</ul>
+			<p class="btnSearch"><a id="btn-search-route-pc" href="#"><img src="img/btn_r10.png" alt="SEARCH"></a></p>
+		</div>
+	</section>
+</div>
+
+<header>
+	<div class="wrapper">
+		<h1 id="logo"><a href="./"><img src="img/logo.png" alt="PROUD"></a></h1>
+		<h2 class="com_name"></h2>
+		<!-- <p class="hidden_p"><a id="btnSearchSP"><img src="img/sp/btn_s01.png" alt="物件を探す"></a></p> -->
+		<!-- <p class="hidden_p"><a href="area.html"><img src="img/sp/btn_s01.png" alt="物件を探す"></a></p> -->
+		<nav id="gnav" class="hidden_sp">
+			<ul class="clearfix">
+				<li><a href="http://www.proud-web.jp/teikei/global/subwin/kansai.html" target="_blank"><img src="img/btn_t01.png" alt="関西"></a></li>
+				<li><a href="http://www.proud-web.jp/teikei/global/subwin/nagoya.html" target="_blank"><img src="img/btn_t02.png" alt="名古屋"></a></li>
+				<li><a href="http://www.proud-web.jp/teikei/global/subwin/sendai.html" target="_blank"><img src="img/btn_t03.png" alt="九州"></a></li>			</ul>
+		</nav>
+	</div>
+</header><!-- /header -->
+
+<!--
+<section class="cont01">
+	<ul class="topSlider hidden_sp">
+		<li><img src="img/mainimg_01.png"></li>
+	</ul>
+	<ul class="topSlider hidden_p">
+		<li><img src="img/sp/mainimg_s01.png"></li>
+	</ul>
+</section>
+<nav id="gnav" class="hidden_p">
+	<ul class="clearfix">
+		<li><a href="http://www.proud-web.jp/kansai/teikei/" target="_blank"><img src="img/btn_t01.png" alt="関西"></a></li>
+		<li><a href="http://www.proud-web.jp/teikei/" target="_blank"><img src="img/btn_t02.png" alt="名古屋"></a></li>
+		<li><a href="http://www.proud-web.jp/teikei/" target="_blank"><img src="img/btn_t03.png" alt="九州"></a></li>
+	</ul>
+</nav>
+-->
+<!--
+<section class="cont02 wrapper">
+	<h3>物件を探す</h3>
+	<ul class="clearfix sNav">
+		<li><a id="li001"><img src="img/btn_01.png" alt="エリアから探す"></a></li>
+		<li><a id="li002"><img src="img/btn_02.png" alt="路線から探す"></a></li>
+	</ul>
+	<div class="clearfix searchArea">
+		<p id="type-pc" class="s01">
+		<label><input type="radio" checked="checked" class="kindPC" value="all" name="kind">ALL</label>
+		<label><input type="radio" class="kindPC" value="2" name="kind">マンション</label>
+		<label><input type="radio" class="kindPC" value="1" name="kind">戸建</label></p>
+		<p class="s02"><img src="img/txt_01.png" alt="チェックした物件をまとめて資料請求できます"/></p>
+		<p class="s03">
+			<!-- DROPDOWN --><!--
+			<dl id="dropdown-four" class="dropdown" style="position:absolute; right:0; top: 91px;">
+		        <dt><a><img class="flag" src="img/publish_at.png" alt="1" data-sort="published_at" /></a></dt>
+		        <dd>
+		            <ul>
+		                <li><a><img class="flag" src="img/gross_area_float.png" alt="2" data-sort="gross_area_float" /></a></li>
+		                <li><a><img class="flag" src="img/access_int.png" alt="2" data-sort="access_int" /></a></li>
+		                <li><a><img class="flag" src="img/houses_int.png" alt="2" data-sort="houses_int" /></a></li>
+		            </ul>
+		        </dd>
+		    </dl>-->
+		    <!-- DROPDOWN -->
+<!--
+		</p>
+	</div>
+	<form action="https://www.proud-web.jp/module/material/SiryoOrderTop.xphp" id="requestForm" name="request" target="_blank" method="get">
+	<ul id="listContents" class="list clearfix">
+	</ul>
+	<p class="inqBtn"><a onclick="requestSelectedAll();"><img src="img/btn_05.png" alt="チェックした物件をまとめて資料請求"></a></p>
+	</form>
+	<p class="moreBtn"><a id="btnMore"><img src="img/btn_06.png" alt="MORE"></a></p>
+-->
+</section>
+
+
+<section class="cont03">
+	<div class="wrapper">
+		<h3>提携法人のメリット</h3>
+		<p id="dis_rate" class="c01"></p>
+		<p id="discountDesc" class="c02"></p>
+	</div>
+</section>
+<section class="cont04">
+	<div class="wrapper">
+		<!-- <p class="c01">株式会社フォーデジット様にお勤めの皆様へ</p> -->
+		<p class="c01"><span class="com_name2"></span>様にお勤めの皆様へ</p>
+		<p class="c02"><span>提携特典制度</span><br class="br_sp">をご存知でしょうか？</p>
+		<p class="c03">弊社分譲物件をご購入の際、<br class="br_sp">提携割引の特典がございます。<br class="br_sp">ご利用にはお手続きが必要です。</p>
+		<div class="step">
+			<!-- <p class="hidden_p"><img src="img/step_s_b.png"></p> -->
+			<p class="hidden_p"><img id="mobileFLowchart" src="img/step_s_b.png"></p>
+			<ul>
+				<li>
+					<h4>STEP1</h4>
+					<p>勤務先・所属団体で、提携特典制度利用時の必要書類を確認のうえ準備 
+	※ご勤務先の窓口がお分かりにならない場合は、下記お問い合せ先までご連絡ください。</p>
+				</li>
+				<li>
+					<h4>STEP2</h4>
+					<p>販売センターでお客様アンケート記入の際、「物件をお知りになったきっかけ」の「ご勤務先から」にチェック</p>
+				</li>
+				<li>
+					<h4>STEP3</h4>
+					<p>購入申し込みまでに、必要書類を販売担当に提出</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<div id="btn_area">
+	<p><a href="teikei_index.html"><img src="img/search_propaty.png" alt="物件を探す"></a></p>
+</div>
+<section class="cont05 wrapper">
+	<ul class="clearfix">
+		<li><a href="" target="_blank"><img src="img/bn_01.png" alt="野村不動産の新ブランド　OHANA"></a></li>
+		<li><a href="" target="_blank"><img src="img/bn_02.png" alt="野村不動産グループ　カスタマークラブ"></a></li>
+		<li><a href="" target="_blank"><img src="img/bn_03.png" alt="住宅ローン控除ってなぁに？税の知識"></a></li>
+		<li><a href="" target="_blank"><img src="img/bn_04.png" alt=""></a></li>
+	</ul>
+	<h3><img src="img/ttl_f.png" alt="プラウドクラブについて"></h3>
+	<dl class="clearfix">
+		<dt><img src="img/logo_01.png" alt="PLOUD CLUB"></dt>
+		<dd class="c01">野村不動産の新築物件情報やライフスタイルの情報を<br>
+		e-mailや会報誌等でお届けします。（入会費・会員費無料）</dd>
+		<dd class="c02"><a href=""><img src="img/btn_f01.png" alt="プラウドクラブご入会はこちらから"></a></dd>
+		<dd class="c03"><a href=""><img src="img/btn_f02.png" alt="My Pageへログイン"></a></dd>
+	</dl>
+</section>
+<section class="cont06">
+	<dl class="clearfix">
+		<dt>野村不動産株式会社 <br class="br_sp">住宅事業本部 営業推進部 プロモーション課</dt>
+		<dd><img src="img/txt_f02.png" alt="03-3348-8758"></dd>
+		<dd><img src="img/txt_f03.png" alt="営業時間 ｜ 9:00〜17:40
+定休日 ｜ 土・日・祝日"></dd>
+		<dd><a href=""><img src="img/btn_f03.png" alt="お問い合わせ"></a></dd>
+	</dl>
+</section>
+
+<footer>
+	<div class="wrapper clearfix">
+		<p class="logo"><img src="img/logo_02.png" alt="野村不動産　あしたを、つなぐ--野村不動産グループ"></p>
+		<p class="privacy"><a href=""><img src="img/btn_f04.png" alt="個人情報の取り扱い"></a></p>
+		<copyright>Copyright (c) Nomura Real Estate Development Co., Ltd. All Rights Reserved.</copyright>
+	</div>
+</footer>
+
+<script type="text/javascript">
+var company = "Japanese Company";
+var keywordAreaID = "";
+var keywordType = "";
+var ddSort = "published_at";
+
+var area_array = [];
+var route_array = [];
+var type_value;
+var sort_value;
+
+$(document).ready(function (){
+
+	getMasterDataPC();
+  // selectCompany();
+
+  // $('#areatypemobile input').first().click();
+  // $('#areasortmobile label').first().find('input').click();
+
+  type_value = $('#type-pc input[name="kind"]:checked').val();
+  sort_value = $('#dropdown-four > dt img').data('sort');
+
+	///////////// DROPDOWN ///////////////
+  var prevSelected = "";
+  var currentSelected = "";
+  var temp = "";
+
+  $(".dropdown dt").click(function() {
+      $(".dropdown dd ul").toggle();
+  });
+
+  $(".dropdown dd ul li").click(function() {
+
+    var selected = $(this).find('a').detach();
+    var current = $('#dropdown-four > dt > a').detach();
+
+    $(this).append(current);
+    $('#dropdown-four > dt').append(selected);
+      $(".dropdown dd ul").hide();
+
+      ddSort = selected.find('img').data('sort');
+      sort_value = selected.find('img').data('sort');
+      console.log(sort_value);
+  });
+
+  $(document).bind('click', function(e) {
+      var $clicked = $(e.target);
+      if (! $clicked.parents().hasClass("dropdown"))
+          $(".dropdown dd ul").hide();
+  });
+
+  $(".dropdown img.flag").toggleClass("flagvisibility");
+  ///////////// DROPDOWN ///////////////
+
+	// Triggers
+	$('#arealistpc > li').on('click', function() {
+    var areaname = $(this).attr('class').substr(2, 1);
+    var temp = $(this).find('img').attr('src');
+    var newSrc = $(this).find('img').data('src');
+
+    if (area_array.indexOf(areaname) < 0)
+    {
+      area_array.push(areaname);
+    }
+    else
+    {
+    	removeA(area_array, areaname);
+    }
+
+    $(this).find('img').attr('src', newSrc);
+    $(this).find('img').data('src', temp);
+
+    console.log(areaname);
+  });
+
+  $('#arealistmobile > li').on('click', function() {
+    var areaname = $(this).find('input').val();
+
+    if (area_array.indexOf(areaname) < 0)
+    {
+      area_array.push(areaname);
+    }
+    console.log(areaname);
+  });
+
+  $('#routelistmobile > li').on('click', function() {
+    var routename = $(this).find('input').val();
+
+    if (route_array.indexOf(routename) < 0)
+    {
+      route_array.push(routename);
+    }
+    console.log(routename);
+  });
+
+  $('#routelistpc > li').on('click', function() {
+    var routename = $(this).data('line');
+    var temp = $(this).find('img').attr('src');
+    var newSrc = $(this).find('img').data('src');
+
+    if (route_array.indexOf(routename) < 0)
+    {
+      route_array.push(routename);
+    }
+    else
+    {
+    	removeA(route_array, routename);
+    }
+
+    $(this).find('img').attr('src', newSrc);
+    $(this).find('img').data('src', temp);
+
+    console.log(routename);
+  });
+
+  $('#areatypemobile > li').on('click', function(){
+  	type_value = $(this).find('input').val();
+  	console.log('area type : ' + type_value);
+  });
+
+  $('#routetypemobile > li').on('click', function(){
+  	type_value = $(this).find('input').val();
+  	console.log('route type : ' + type_value);
+  });
+
+  //open modal area pc
+  $("#li001").click(function() {     
+    $("#modalSP").css("display", "block");   
+  }); 
+
+  //open modal route pc
+  $("#li002").click(function() {     
+    $("#routePC").css("display", "block");   
+  });
+
+  //open default modal sp
+  $("#btnSearchSP").click(function() {  
+    $(".route").css("display", "none");  
+    $("#modalSP").css("display", "block");  
+  }); 
+    
+  //close
+  $("#areasearchBtnClose").click(function() {
+    getMasterDataPC();
+    $('#area-search').css('display', 'block');
+  	$('#route-search').css('display', 'none');
+    $("#modalSP").css("display", "none");
+  });
+
+  $('#routeSearchBtnClose').click(function() {
+  	getMasterDataPC();
+  	$('#area-search').css('display', 'block');
+  	$('#route-search').css('display', 'none');
+  	$("#modalSP").css("display", "none");
+  });
+
+  //close
+  $("#routesearchBtnClose").click(function() {
+    $("#modalSP").css("display", "none");
+  });
+
+  //route mobile
+  $('#btnRouteMobileModal').click(function () {
+  	area_array = [];
+  	$('#area-search').css('display', 'none');
+  	$('#route-search').css('display', 'block');   
+  });
+
+  //area mobile
+  $('#btnAreaMobileModal').click(function () {
+  	route_array = [];
+  	$('#area-search').css('display', 'block');
+  	$('#route-search').css('display', 'none');
+  });
+
+  //open area modal sp
+  $("#btnAreaSP").click(function() {  
+    $(".area").css("display", "block");    
+    $(".route").css("display", "none");
+  });
+
+  //open modal route sp
+  $("#btnRouteSP").click(function() { 
+    $(".area").css("display", "none");     
+    $(".route").css("display", "block");   
+  }); 
+  
+  //close modal route sp
+  $("#routeModalSPClose").click(function() {
+    alert("this");
+    $("#routeModalSP").css("display", "none");
+  });
+
+  $('#btn-search-route-pc').on('click', function() {
+  	console.log(route_array);
+  	area_array = [];
+    getMasterDataPC();
+    $("#routePC").css("display", "none");
+  });
+
+  $('#btn-areapc-search').on('click', function() {
+    console.log(area_array);
+    route_array = [];
+    getMasterDataPC();
+    $("#modalSP").css("display", "none");
+  });
+
+  $("#btnMore").click(function() {
+      loadMore(16);  
+  });
+
+  $('.areaID').on('click', function() {
+    var keywordAreaID = [];
+    $.each($(".areaID:checked"), function(){            
+        keywordAreaID.push($(this).val());
+    });
+    // sortByArea(keywordAreaID);
+	});
+
+	$('.kindPC').on('change', function() {
+    type_value = $('input[name="kind"]:checked').val();
+    getMasterDataPC();
+    console.log(type_value);
+  });
+
+  $('.kind').on('change', function() {
+    type_value = $('input[name="kind"]:checked').val();
+    getMasterDataPC();
+    console.log(type_value);
+  });
+  
+});
+
+// function selectCompany(){ 
+//   $.getJSON('company.json', function(data) {
+
+//         for (var i in data) { 
+//           if(company == data[i].company){             
+//             var company_name = data[i].company_name;
+//             var discount = data[i].discount;
+//             var discount_desc = data[i].discount_desc;
+
+//             $("#companyName").html(company_name);
+//             $("#discount").html(discount);
+//             $("#discountDesc").html(discount_desc);
+//           }
+//         }
+//     });
+// }
+
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+function getType(num) {
+	if (num == 1) {
+		return "house";
+	}
+	else if (num == 2)
+	{
+		return "mansion";
+	}
+}
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
+function getMasterDataPC() {
+	var result = "";
+	var printItem = false;
+	// var estates_file = "estates.json";
+	var estates_file = "http://fatima.cloudsoftwarestudio.com/estates.json";
+	$.getJSON(estates_file, function(data) {
+    var liCount = 0;        
+
+        for (var i in data) {               
+
+          liCount++;
+          var image_pc_url = "http://www.proud-web.jp/" + data[i].image_pc_url;
+          // var image_pc_url = data[i].image_pc_url;
+          var structure_name = data[i].structure_name;
+          var catch_copy = data[i].catch_copy;
+          var address = data[i].address;
+          var access = data[i].access;  
+          var structure_url = data[i].structure_url;
+          var structure_code = data[i].structure_code;
+
+          if ( area_array.length > 0 ) { // check by area
+
+          	console.log('ARRAYS');
+          	console.log(data[i].area_id.toString());
+          	console.log(area_array);
+
+          	if ( isInArray(data[i].area_id.toString(), area_array) )
+          	{
+          		if ( type_value != 'all' )
+          		{
+          			if (type_value == data[i].division_type)
+          			{
+          				printItem = true;
+          			}
+          		}
+          		else 
+          		{
+          			printItem = true;
+          		}
+          	}
+          } 
+          else if ( route_array.length > 0 ) { //check by route
+          	for (j = 0; j < route_array.length; j++)
+          	{
+          		for (k = 0; k < data[i].access_codes.length; k++)
+          		{
+          			if (data[i].access_codes[k] == route_array[j])
+          			{
+          				if ( type_value != 'all' )
+		          		{
+		          			if (type_value == data[i].division_type)
+		          			{
+		          				printItem = true;
+		          			}
+		          		}
+		          		else 
+		          		{
+		          			printItem = true;
+		          		}
+          			}
+          		}
+          	}
+          } 
+          else if ( route_array.length <= 0 && area_array.length <= 0)
+          {
+          	if ( type_value != 'all' )
+        		{
+        			if (type_value == data[i].division_type)
+        			{
+        				printItem = true;
+        			}
+        		}
+        		else 
+        		{
+        			printItem = true;
+        		}
+          }
+
+          if (printItem == true)
+          {
+	          if(liCount == 4)
+	          {
+	            result += '<li id="li0'+i+'" class="mr0 hiddenContents" onmouseover="showModal('+i+')" onmouseout="hideModal('+i+')">';
+	            liCount = 0;
+	          }
+	          else
+	          {
+	            result += '<li id="li0'+i+'" class="hiddenContents" onmouseover="showModal('+i+')" onmouseout="hideModal('+i+')">';
+	          }
+
+	          //remove this
+			      // result += "type: " + getType(data[i].division_type) + ' route:' + data[i].access_codes + ' area:' + data[i].area_id;
+			      //remove this
+
+			      result += '<p class="imgArea"><img src=' + image_pc_url + '></p>';
+			      result += '<div class="txtArea">';
+
+			      result += '<div class="iconArea">';
+			      result += '<p><img src="img/icon_k01.png" alt="マンション"></p>';
+			      result += '<p><img src="img/icon_a01.png" alt="東京"></p>';
+			      result += '<h4>' + structure_name + '</h4>';      
+			      result += '</div>';
+
+			      result += '<p class="catch">' + catch_copy + '</p>';
+			      result += '<dl class="detailArea clearfix">';
+			      result += '<dt>所在地</dt>';
+			      result += '<dd>' + address + '</dd>';     
+			      result += '<dt>交通情報</dt>';
+			      result += '<dd>' + access + '</dd>';
+			      result += '</dl>';
+			      
+			      result += '<dl id="divModal0'+i+'" class="detailArea clearfix mouseon">';
+			      result += '<dt>総戸数</dt>';
+			      result += '<dd>575戸 (非分譲住戸188戸含む＜A：175戸（45戸）、B：283戸（68戸）、C：76戸（54戸）、D：17戸（2戸）、E：24戸（19戸）　※（）内非分譲住戸数＞)</dd>';
+			      result += '<dt>間取り</dt>';
+			      result += '<dd>2LDK ～ 3LDK</dd>'; 
+			      result += '<dt>専有面積</dt>';
+			      result += '<dd class="last">63.42 ～ 102.71m² (Ａ：63.42㎡～102.71㎡、B：64.77㎡～90.33㎡)</dd>';
+			      result += '</dl>';
+
+			      result += '</div>';
+
+			      result += '<div class="btnArea">';
+			      result += '<dl class="clearfix">';
+			      result += '<dt><input type="checkbox" name="qoqaq_codes[]" value="' + structure_code + '"></dt>';       
+			      result += '<dd class="c01"><a href="' + structure_url + '" target="_blank"><img src="img/btn_a.png" alt="物件サイト"></a></dd>';
+
+			      result += '<dd class="c02"><a href="https://www.proud-web.jp/module/material/SiryoOrderTop.xphp?qoqaq_codes%5B%5D=' + structure_code + '" target="_blank"><img src="img/btn_b.png" alt="資料請求"></a></dd>';
+			      result += '</dl>';
+			      result += '</div>';
+			      
+			      result += '</li>';
+
+			      printItem = false;
+			    }
+        }
+
+    $("#listContents").html(result);
+    loadMore(8);
+  });
+}
+
+function requestSelectedAll(){
+  if ($('#requestForm input[type=checkbox]:checked').length == 0) {
+    return false;
+  }
+  $('#requestForm').submit();
+}
+
+function showModal(i) {
+  var count = i;  
+  $("#divModal0"+count).css("display","block");
+}
+
+function hideModal(i) {
+  var count = i;  
+  $("#divModal0"+count).css("display","none");
+}
+
+function loadMore(i){
+  var dataCount = i;
+  $("#listContents .hiddenContents").slice(0,8).removeClass("hiddenContents"); 
+}
+
+</script>
+<!-- Analytics -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

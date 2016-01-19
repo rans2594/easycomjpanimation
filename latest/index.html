@@ -1,0 +1,142 @@
+<html>
+<head>
+	<title></title>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+</head>
+<script type = "text/javascript">
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
+	
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1);
+		if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+	}
+	return "";
+}
+
+
+// getting ip address
+var userip;
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src = "https://l2.io/ip.js?var=userip";
+$("head").append(s);
+
+//document.write('Your ip addresseseses is', userip);
+
+//now get function via $.getJSON
+
+function notVisitedIP(){
+		window.location= "merit.html";
+}
+
+function visitedIP(){
+	userDetails();
+}
+
+function checkCookie() {
+	$.getJSON('json_files_details.json', function(data) {
+		var x = '';
+		var defaultip = '0000';
+		for (var i in data) {
+			if(userID == data[i].id){
+				x = data[i].id;
+			} 
+		}
+		if(x == userID && userID != "" ){
+			setCookie("id", x, 365);
+		} else {
+			setCookie("id", defaultip, 365);
+		}
+	});
+
+	var user = getCookie("ipaddress");  
+
+	if (user ==  userip) {
+		visitedIP();
+
+	} else {
+		var user = userip;
+		setCookie("ipaddress", user, 365);
+		console.log("cookie stored");
+		notVisitedIP();
+	}
+}
+
+
+// raymund code
+// var url = "http://localhost/raymund_latestofalllatest/index.html?id=1000";
+// var url =  "http://www.proud-web.jp/teikei/0000"
+// console.log(pathArray);
+var url = window.location.href;
+var last_element = url.split('/');
+var userID = last_element[last_element.length - 1];
+
+console.log(userID);
+function userDetails(){ 
+	var x = '';
+	var url = '';
+	var ip = '';
+	$.getJSON('json_files_details.json', function(data) {
+		for (var i in data) { 
+			if(userID == data[i].id){
+				x = data[i].id;
+				url = data[i].redirect_url;	
+			} 
+			if(userID != data[i].ip_address){
+				// console.log(data[i].ip_address);
+
+				if (data[i].ip_address == userip) {
+					var nouserID = '';
+					var var_url = data[i].redirect_url;
+				}
+			}
+		}
+
+		if(x == userID &&  url != ''){
+			window.location = url;
+
+		} else if (nouserID == '')  {
+			if (var_url != '') {
+				// console.log(url);
+				window.location = var_url;
+			} else {
+				// alert(url);
+				// console.log(url);
+				window.location =  "teikei_index.html"
+
+			}
+		} else {
+			window.location = "teikei_index.html"
+		}
+
+	});
+}
+
+// userDetails();
+
+// var animal = ["cat", "dog", "pig"];
+
+// animal.forEach(
+//     function (value) { 
+//     	console.log(value);
+//     }
+// );
+
+</script>
+
+<body onload="checkCookie()">
+	<div id = "display"> </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<title>PROUD - 野村不動産　提携特典制度</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<meta property="og:title" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="" />
+<meta property="og:image" content="" />
+
+<meta name="robots" content="all">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/contents.css">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="./js/common.js"></script>
+
+<script type="text/javascript" src="js/jquery.bxslider.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+$('.topSlider').bxSlider({
+  mode: 'fade',
+  auto: true,
+  pager: false
+});
+  });
+</script>
+
+</head>
+
+<body class="top">
+
+<header>
+	<div class="wrapper">
+		<h1 id="logo"><a href="./"><img src="img/logo.png" alt="PROUD"></a></h1>
+		<h2>○○○○○○<br class="br_sp">企業様ようこそ</h2>
+		<p class="hidden_p"><a href="index.html"><img src="img/sp/btn_s02.png" alt="閉じる"></a></p>
+		<nav id="gnav" class="hidden_sp">
+			<ul class="clearfix">
+				<li><a href="/">TOP</a></li>
+				<li><a href="">物件を探す</a></li>
+				<li><a href="">提携企業制度とは</a></li>
+				<li><a href="">お問い合わせ</a></li>
+			</ul>
+		</nav>
+	</div>
+</header><!-- /header -->
+<section class="areaSearch hidden_sp">
+	<div class="wrapper">
+		<h3><img src="img/txt_a01.png" alt="路線から探す"></h3>
+		<ul class="list01 clearfix">
+			<li class="a01"><a href="index.html"><img src="img/btn_a01.png" alt="埼玉"></a></li>
+			<li class="a02"><a href="index.html"><img src="img/btn_a02.png" alt="城西・城北"></a></li>
+			<li class="a03"><a href="index.html"><img src="img/btn_a03.png" alt="東京市部"></a></li>
+			<li class="a04"><a href="index.html"><img src="img/btn_a04.png" alt="都心6区"></a></li>
+			<li class="a05"><a href="index.html"><img src="img/btn_a05.png" alt="城東"></a></li>
+			<li class="a06"><a href="index.html"><img src="img/btn_a06.png" alt="千葉"></a></li>
+			<li class="a07"><a href="index.html"><img src="img/btn_a07.png" alt="城南"></a></li>
+			<li class="a08"><a href="index.html"><img src="img/btn_a08.png" alt="神奈川"></a></li>
+		</ul>
+		<p class="map"><img src="img/area_map.png" alt="エリアマップ"></p>
+		<p class="btnSearch"><a href=""><img src="" alt="SEARCH"></a></p>
+	</div>
+</section>
+<section class="areaSearch hidden_p">
+	<nav id="search">
+		<ul class="clearfix">
+			<li class="current">
+				<a href="area.html"><img src="img/sp/btn_s03_on.png" alt="エリアから探す"></a>
+			</li>
+			<li class="other"><a href="route.html"><img src="img/sp/btn_s04.png" alt="路線から探す"></a></li>
+		</ul>
+	</nav>
+	<div class="searchAreaS">
+		<p class="arrow"><img src="img/sp/arrow_s_bottom.png"></p>
+		<ul class="list01 clearfix">
+			<li><label><input type="checkbox" name="area" value="area01">東京（都心6区）</label></li>
+			<li><label><input type="checkbox" name="area" value="area02">東京（城西・城北）</label></li>
+			<li><label><input type="checkbox" name="area" value="area03">東京（城東）</label></li>
+			<li><label><input type="checkbox" name="area" value="area04">東京（城南）</label></li>
+			<li><label><input type="checkbox" name="area" value="area05">東京（東京市部）</label></li>
+			<li><label><input type="checkbox" name="area" value="area06">神奈川</label></li>
+			<li><label><input type="checkbox" name="area" value="area07">埼玉</label></li>
+			<li><label><input type="checkbox" name="area" value="area08">千葉</label></li>
+		</ul>
+		<h4>物件種別</h4>
+		<p class="list02"><label><input type="radio" value="all" name="kind">ALL</label>
+		<label><input type="radio" value="mansion" name="kind">マンション</label>
+		<label><input type="radio" value="house" name="kind">戸建</label></p>
+		<h4>並び替え</h4>
+		<p class="list02"><label><input type="radio" name="sort" value="sort01">新着順</label>
+		<label><input type="radio" name="sort" value="sort01">駅から近い順</label>
+		<label><input type="radio" name="sort" value="sort01">専有面積が広い順</label>
+		<label><input type="radio" name="sort" value="sort01">総戸数が多い順</label></p>
+		<p class="btnSearch"><a href="index.html"><img src="img/sp/btn_s05.png" alt="SEARCH"></a></p>
+	</div>
+</section>
+	
+
+
+<script type="text/javascript">
+$("#searchBtnClose").click(function() {
+	alert("this");
+		// $("#areaModal").css("display", "none");
+	});
+</script>
+</body>
+</html>
